@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: my-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: skywalkingdemo1
+          uri: http://127.0.0.1:8002
+          predicates:
+            - Path=/demo/**
+          filters:
+              - RewritePath=/demo/?(?<segment>.*), /$\{segment}
+server:
+  port: 8081
+
